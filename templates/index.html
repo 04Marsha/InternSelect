@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>InternPredict</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card">
+            <h2>InternPredict</h2>
+            <form action="/predict" method="post">
+                <h5>Predict. Prepare. Perform. </h5>
+
+                <div class="input-group">
+                    <label>CGPA</label>
+                    <input type="number" step="0.01" name="cgpa" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Number of Projects</label>
+                    <input type="number" name="num_projects" required>
+                </div>
+
+                <div class="input-group">
+                    <label>DSA Level (0 to 3)</label>
+                    <input type="number" name="dsa_level" min="0" max="3" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Tech Stack Count</label>
+                    <input type="number" name="tech_stack_count" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Hackathon Participation</label>
+                    <select name="hackathon" required>
+                        <option value="">Select an option</option>
+                        <option value="1">✓ Yes</option>
+                        <option value="0">✗ No</option>
+                    </select>
+                </div>
+
+                <button type="submit">Predict My Chances</button>
+            </form>
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="result 
+            {% if messages[0] == 'Shortlisted 🎉' %}
+
+        success
+      {% else %}
+        failure
+      {% endif %}
+    ">
+                {{ messages[0] }}
+            </div>
+            {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+
+</body>
+
+</html>
