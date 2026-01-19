@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <title>InternPredict</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}?v=3">
 </head>
 
 <body>
 
     <div class="container">
         <div class="card">
-            <h2>InternPredict</h2>
+            <h2>InternSelect</h2>
             <form action="/predict" method="post">
                 <h5>Predict. Prepare. Perform. </h5>
 
@@ -48,20 +48,17 @@
                 <button type="submit">Predict My Chances</button>
             </form>
 
-            {% with messages = get_flashed_messages() %}
+            {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-            <div class="result 
-            {% if messages[0] == 'Shortlisted 🎉' %}
-
-        success
-      {% else %}
-        failure
-      {% endif %}
-    ">
-                {{ messages[0] }}
+            {% for category, message in messages %}
+            <div class="result {{ category }}">
+                {{ message }}
             </div>
+            {% endfor %}
             {% endif %}
             {% endwith %}
+
+
         </div>
     </div>
 
