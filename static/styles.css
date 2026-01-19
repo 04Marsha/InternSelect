@@ -13,7 +13,6 @@ body {
     justify-content: center;
     padding: 20px;
     position: relative;
-    overflow: hidden;
 }
 
 body::before,
@@ -34,7 +33,6 @@ body::before {
 }
 
 body::after {
-    bottom: -100px;
     right: -100px;
     animation-delay: 10s;
 }
