@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>InternSelect</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='form.css') }}?v=3"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-inner">
+        <div class="logo">InternSelect</div>
+        <div class="nav-tag">Know Your Worth • Fast • Accurate</div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="card">
+        <h2>InternSelect</h2>
+        <form action="/predict" method="post">
+          <h5>Predict. Prepare. Perform.</h5>
+
+          <div class="input-group">
+            <label>CGPA</label>
+            <input type="number" step="0.01" name="cgpa" required />
+          </div>
+
+          <div class="input-group">
+            <label>Number of Projects</label>
+            <input type="number" name="num_projects" required />
+          </div>
+
+          <div class="input-group">
+            <label>DSA Level (0 to 3)</label>
+            <input type="number" name="dsa_level" min="0" max="3" required />
+          </div>
+
+          <div class="input-group">
+            <label>Tech Stack Count</label>
+            <input type="number" name="tech_stack_count" required />
+          </div>
+
+          <div class="input-group">
+            <label>Hackathon Participation</label>
+            <select name="hackathon" required>
+              <option value="">Select an option</option>
+              <option value="1">✓ Yes</option>
+              <option value="0">✗ No</option>
+            </select>
+          </div>
+
+          <button type="submit">Predict My Chances</button>
+        </form>
+
+        {% with messages = get_flashed_messages(with_categories=true) %} {% if
+        messages %} {% for category, message in messages %}
+        <div class="result {{ category }}">{{ message }}</div>
+        {% endfor %} {% endif %} {% endwith %}
+      </div>
+    </div>
+    <footer>
+      <p>Predicting Success • {{currentYear}}</p>
+    </footer>
+  </body>
+</html>

@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from flask import Flask, render_template, request, redirect, url_for, flash
 import joblib
+from datetime import datetime
 import os
 
 app = Flask(__name__)
@@ -46,7 +47,11 @@ def generate_recommendations(model, base_input, base_confidence):
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("index.html", currentYear=datetime.now().year)
+
+@app.route("/predict")
+def form():
+    return render_template("form.html", currentYear=datetime.now().year)
 
 
 @app.route("/predict", methods=["POST"])
@@ -92,7 +97,7 @@ def predict():
         for rec in recommendations:
             flash("💡 " + rec, "failure")
 
-    return redirect(url_for("home"))
+    return redirect(url_for("predict"))
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
