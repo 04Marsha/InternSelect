@@ -1,90 +1,116 @@
 # InternSelect
 
-**Where skills matter more than scores**
+### AI-Powered Internship Shortlisting Predictor
 
-InternSelect is an end-to-end machine learning web application that predicts whether a student is likely to be shortlisted for an internship, based on multiple academic and skill-based factors rather than CGPA alone.
-
-The project demonstrates the complete ML lifecycle - from data generation and exploratory data analysis to model training, evaluation, web integration, and secure cloud deployment.
-
-🔗 **Live Demo:** [https://internselect.onrender.com](https://internselect.onrender.com)
+> **Where skills matter more than scores**
 
 ---
 
-## Problem Statement
+## 🔗 Live Demo
 
-Internship shortlisting is often perceived as being heavily dependent on CGPA. However, in real-world hiring, recruiters evaluate candidates using a combination of factors such as:
-
-* Problem-solving ability (DSA)
-* Practical exposure through projects
-* Breadth of technical skills
-* Participation in hackathons
-* Academic consistency
-
-**Objective:**
-Build a machine learning system that evaluates a student profile holistically and predicts whether the student is likely to be shortlisted for an internship.
+👉 https://internselect.onrender.com
 
 ---
 
-## Dataset Description
+## ⚠️ Note on Initial Load Time
 
-Since real hiring datasets are rarely public, a synthetic dataset was generated to closely simulate realistic internship shortlisting scenarios.
+> Due to deployment on the **free tier of Render**, the application may take **30–60 seconds to load on the first request**.
 
-### Features
+* The server automatically goes into a **sleep state** after inactivity
+* The first request “wakes up” the server, causing a slight delay
+* Subsequent requests are **fast and responsive**
 
-| Feature            | Description                                            |
-| ------------------ | ------------------------------------------------------ |
-| cgpa               | Student CGPA (5.5 – 9.5)                               |
-| num_projects       | Number of completed projects                           |
-| dsa_level          | DSA proficiency level (0–3)                            |
-| tech_stack_count   | Number of technologies known                           |
-| hackathon          | Hackathon participation (0 = No, 1 = Yes)              |
-| shortlisted        | Target variable (0 = Not Shortlisted, 1 = Shortlisted) |
+👉 This is a limitation of the hosting plan, not the application itself.
 
-The dataset intentionally includes noise and overlapping classes to reflect real-world ambiguity and avoid unrealistically perfect models.
 
 ---
 
-## Exploratory Data Analysis (EDA)
+## 📌 Overview
+
+**InternSelect** is a full-stack, end-to-end Machine Learning web application that predicts whether a student is likely to be shortlisted for an internship.
+
+Unlike traditional systems that overemphasize CGPA, InternSelect evaluates a candidate holistically using academic performance, technical skills, and practical experience.
+
+---
+
+## 🎯 Problem Statement
+
+Internship shortlisting is often perceived as being heavily dependent on CGPA. However, real-world hiring considers multiple factors:
+
+* 💻 Problem-solving ability (DSA)
+* 📂 Project experience
+* 🧠 Technical breadth
+* 🏆 Hackathon participation
+* 🎓 Academic performance
+
+### 👉 Objective
+
+Build a system that predicts internship shortlisting using multi-dimensional candidate evaluation.
+
+---
+
+## 🧠 Key Features
+
+* 🔮 ML-based shortlisting prediction
+* 💡 Actionable recommendations for improvement
+* 🧠 Explainable AI (SHAP-based insights)
+* 📊 Interactive feature impact visualization (Plotly)
+* ⚡ Real-time prediction via web interface
+* 🌐 Fully deployed cloud application
+
+---
+
+## 📊 Dataset
+
+Since real hiring datasets are not publicly available, a synthetic dataset was generated to simulate realistic scenarios.
+
+### 🔹 Features
+
+| Feature                 | Description                     |
+| ----------------------- | ------------------------------- |
+| `cgpa`                  | Academic score (5.5 – 9.5)      |
+| `num_projects`          | Number of completed projects    |
+| `dsa_level`             | Problem-solving level (0–3)     |
+| `tech_stack_count`      | Number of technologies known    |
+| `hackathon`             | Participation (0 / 1)           |
+| `internship_experience` | Prior internship (0 / 1)        |
+| `github_activity`       | GitHub activity level           |
+| `deployed_projects`     | Live project deployment (0 / 1) |
+| `project_complexity`    | Project sophistication (1–3)    |
+| `shortlisted`           | Target variable                 |
+
+---
+
+## 🔍 Exploratory Data Analysis
 
 EDA was performed to:
 
 * Understand feature distributions
-* Examine class balance
-* Analyze overlap between shortlisted and non-shortlisted candidates
-* Identify important predictive features
+* Analyze class imbalance
+* Identify correlations
+* Detect overlapping decision boundaries
 
-### Key Observations
+### 🔑 Insights
 
-* CGPA alone is not sufficient for prediction
-* DSA proficiency and project experience play a major role
-* Feature overlap is expected and helps improve generalization
+* CGPA alone is not sufficient
+* DSA + projects significantly impact selection
+* Real-world ambiguity improves model robustness
 
 ---
 
-## Model Development
+## 🤖 Model Development
 
 ### Models Trained
 
-1. Decision Tree Classifier
-
-   * Baseline model
-   * High training accuracy
-   * Overfitting observed
-
-2. Tuned Decision Tree
-
-   * Controlled depth
-   * Reduced overfitting
-
-3. Random Forest Classifier *(Final Model)*
-
-   * Ensemble-based approach
-   * Improved generalization
-   * More stable predictions on unseen data
+| Model               | Description                     |
+| ------------------- | ------------------------------- |
+| Decision Tree       | Baseline (overfitting observed) |
+| Tuned Decision Tree | Reduced variance                |
+| Random Forest       | Final selected model            |
 
 ---
 
-## Model Performance
+### 📈 Performance
 
 | Model               | Train Accuracy | Test Accuracy |
 | ------------------- | -------------- | ------------- |
@@ -92,75 +118,84 @@ EDA was performed to:
 | Tuned Decision Tree | 0.94           | 0.75          |
 | Random Forest       | **0.97**       | **0.82**      |
 
-**Final Model Selected:** Random Forest
-
-Reason: Best balance between bias and variance with improved test performance.
-
----
-
-## Feature Importance (Random Forest)
-
-Approximate importance ranking:
-
-1. DSA Level
-2. CGPA
-3. Number of Projects
-4. Hackathon Participation
-5. Tech Stack Count
-
-This aligns well with real-world hiring expectations.
+👉 **Final Model: Random Forest**
+✔ Best generalization
+✔ Stable predictions
+✔ Handles feature interactions well
 
 ---
 
-## Web Application
+## 🧠 Explainable AI (SHAP)
 
-The trained model is integrated into a Flask-based web application.
+InternSelect integrates **SHAP (SHapley Additive exPlanations)** to provide:
 
-### User Flow
+* 📊 Feature impact visualization
+* 📈 Positive vs negative contribution
+* 🧠 Personalized reasoning
 
-1. User enters student profile details
-2. Submits the form
-3. Receives instant prediction:
+### Example Output
 
-   * **Shortlisted 🎉**
-   * **Not Shortlisted ❌**
+* “Internship experience increased your chances by 18% ⬆️”
+* “Low CGPA decreased your chances by 12% ⬇️”
 
-### Frontend
-
-* Custom HTML and CSS (no UI frameworks)
-* Clean, responsive layout
-* Result-based visual feedback
-
-### Backend
-
-* Flask web framework
-* Model loading using joblib
-* Secure session handling
-* POST → Redirect → GET pattern for clean UX
+👉 Makes predictions **transparent and interpretable**
 
 ---
 
-## Security & Best Practices
+## 🌐 Web Application
 
-* No secrets hard-coded in source code
-* Flask SECRET_KEY managed via environment variables
-* .gitignore used to prevent committing sensitive files
-* Virtual environments excluded from version control
+### 🖥️ Frontend
+
+* HTML + CSS (custom design)
+* Clean and responsive UI
+* Real-time feedback
+
+### ⚙️ Backend
+
+* Flask framework
+* Model inference using `joblib`
+* Session-based state handling
+* POST → Redirect → GET pattern
 
 ---
 
-## Deployment
+## 🔄 User Flow
 
-InternSelect is deployed on Render (Free Tier).
+1. User enters profile details
+2. Model predicts outcome
+3. Displays:
+
+   * 🎯 Prediction result
+   * 💡 Recommendations
+   * 🧠 AI explanations
+   * 📊 SHAP graph
+
+---
+
+## 🔐 Security & Best Practices
+
+* Environment variables for secrets
+* .gitignore for sensitive files
+* Clean project structure
+* No hardcoded credentials
+
+---
+
+## 🚀 Deployment
+
+* Platform: **Render (Free Tier)**
+* Hosted as a live web app
+* Accessible globally
 
 ---
 
 ## 🛠️ Tech Stack
 
-* **Programming Language:** Python
-* **Data Analysis:** Pandas, NumPy
-* **Machine Learning:** Scikit-learn
-* **Model Persistence:** Joblib
+* **Language:** Python
+* **ML:** Scikit-learn
+* **Data:** Pandas, NumPy
+* **Explainability:** SHAP
+* **Visualization:** Plotly
 * **Backend:** Flask
 * **Frontend:** HTML, CSS
 * **Deployment:** Render
@@ -170,20 +205,17 @@ InternSelect is deployed on Render (Free Tier).
 
 ## 📌 Project Highlights
 
-* End-to-end machine learning pipeline
-* Realistic data simulation
-* Overfitting control and evaluation
-* Production-ready Flask integration
-* Secure cloud deployment
+✔ End-to-end ML pipeline
+✔ Realistic synthetic dataset
+✔ Explainable AI integration
+✔ Interactive visualizations
+✔ Production-ready deployment
 
 ---
 
-## 📈 Future Improvements
+## 👨‍💻 Author
 
-* Display prediction probability (confidence score)
-* Store and visualize prediction history
-* Improve dataset realism
-* Integrate real-world hiring datasets
-* Add authentication and user profiles
+**Marsha Sharma**
 
 ---
+
