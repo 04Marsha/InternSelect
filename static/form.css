@@ -1,9 +1,5 @@
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+html {
+  height: 100%;
 }
 
 :root {
@@ -14,12 +10,8 @@
   --muted: rgba(255, 255, 255, 0.48);
 }
 
-html {
-  height: 100%;
-}
-
 body {
-  font-family: "Outfit", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Outfit", sans-serif;
   min-height: 100vh;
   background: #080514;
   color: var(--white);
@@ -133,46 +125,6 @@ body > *:not(nav):not(footer) + .container::before,
   to {
     transform: translate(-45px, -55px) scale(1.07);
   }
-}
-
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  padding: 22px 0;
-  backdrop-filter: blur(28px) saturate(1.5);
-  background: rgba(8, 5, 20, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.nav-inner {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 0 44px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo {
-  font-family: "Syne", sans-serif;
-  font-weight: 800;
-  font-size: 20px;
-  background: linear-gradient(120deg, var(--p1) 0%, #c084fc 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: -0.4px;
-}
-
-.nav-tag {
-  font-size: 13px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.637);
-  letter-spacing: 1px;
-  text-transform: uppercase;
 }
 
 .container {
@@ -395,140 +347,9 @@ button[type="submit"]:active {
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
 
-.result {
-  margin-top: 24px;
-  padding: 18px 22px;
-  border-radius: 14px;
-  font-family: "Syne", "Segoe UI", sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  text-align: center;
-  letter-spacing: -0.1px;
-  position: relative;
-  overflow: hidden;
-}
-
-.result.success {
-  background: linear-gradient(135deg, var(--green) 0%, #059669 100%);
-  color: var(--white);
-  box-shadow: 0 8px 28px rgba(16, 185, 129, 0.38);
-  animation:
-    popIn 0.65s cubic-bezier(0.68, -0.55, 0.265, 1.55) both,
-    successPulse 2.5s ease-in-out 0.65s infinite;
-}
-
-.result.success::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.15),
-    transparent
-  );
-  animation: shimmer 2.8s ease-in-out 1s infinite;
-  pointer-events: none;
-}
-
-.result.failure {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  color: var(--white);
-  box-shadow: 0 8px 28px rgba(245, 158, 11, 0.38);
-  animation: slideDown 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.result.error {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-  color: var(--white);
-  box-shadow: 0 8px 28px rgba(239, 68, 68, 0.35);
-  animation: slideDown 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-@keyframes popIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.5) rotate(-8deg);
-  }
-  60% {
-    transform: scale(1.08) rotate(3deg);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
-  }
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    left: -100%;
-  }
-  60% {
-    left: 100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
-
-@keyframes successPulse {
-  0%,
-  100% {
-    box-shadow: 0 8px 28px rgba(16, 185, 129, 0.38);
-  }
-  50% {
-    box-shadow: 0 10px 36px rgba(16, 185, 129, 0.58);
-  }
-}
-
-footer {
-  position: relative;
-  z-index: 2;
-  border-top: 1px solid rgba(255, 255, 255, 0.04);
-  padding: 30px 40px;
-  text-align: center;
-}
-
-footer p {
-  font-size: 16px;
-  color: rgba(255, 255, 255, 0.18);
-  font-weight: 300;
-}
-
 @media (max-width: 480px) {
   body {
     padding: 0;
-  }
-
-  nav {
-    padding: 14px 0;
-  }
-
-  .nav-inner {
-    padding: 0 20px;
-  }
-
-  .logo {
-    font-size: 18px;
-  }
-
-  .nav-tag {
-    font-size: 10px;
-    letter-spacing: 0.4px;
   }
 
   .container {
@@ -586,37 +407,11 @@ footer p {
     border-radius: 12px;
     margin-top: 10px;
   }
-
-  .result {
-    font-size: 15px;
-    padding: 16px 18px;
-    margin-top: 20px;
-  }
-
-  footer {
-    padding: 16px 20px;
-  }
-
-  footer p {
-    font-size: 11px;
-  }
 }
 
 @media (min-width: 481px) and (max-width: 600px) {
   body {
     padding: 0;
-  }
-
-  nav {
-    padding: 16px 0;
-  }
-
-  .nav-inner {
-    padding: 0 24px;
-  }
-
-  .nav-tag {
-    font-size: 11px;
   }
 
   .container {
@@ -665,19 +460,11 @@ footer p {
     font-size: 17px;
     margin-top: 10px;
   }
-
-  footer {
-    padding: 18px 24px;
-  }
 }
 
 @media (min-width: 601px) and (max-width: 900px) {
   body {
     padding: 0 24px;
-  }
-
-  .nav-inner {
-    padding: 0 28px;
   }
 
   .container {

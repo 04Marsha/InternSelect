@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>InternSelect</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}?v=3"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='analysis.css') }}?v=3"
+    />
+  </head>
+  <body>
+    <nav>
+      <div class="nav-inner">
+        <a href="/" style="text-decoration: none; color: inherit">
+          <div class="logo">InternSelect</div>
+        </a>
+        <div class="nav-tag">Know Your Worth • Fast • Accurate</div>
+      </div>
+    </nav>
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+    messages %} {% for category, message in messages %}
+    <div class="result {{ category }}">{{ message }}</div>
+    {% endfor %} {% endif %} {% endwith %} {% if plot_html %}
+    <div class="chart-container">{{ plot_html | safe }}</div>
+    {% endif %}
+    <div class="predict-again-wrap">
+      <a href="/predict" class="predict-again-btn"> Predict Again </a>
+    </div>
+    <footer>
+      <p>Predicting Success • {{currentYear}}</p>
+    </footer>
+  </body>
+</html>
